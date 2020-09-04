@@ -1,0 +1,36 @@
+##############################
+# Aliases
+#############################
+alias zshrc="source ~/.zshrc"
+alias zshconfig="code ~/.zshrc"
+alias myip="curl http://ipecho.net/plain; echo"
+
+alias cp="cp -i"                                                # Confirm before overwriting something
+alias df='df -h'                                                # Human-readable sizes
+alias free='free -m'                                            # Show sizes in MB
+
+# dev
+alias dev="cd ~/dev"
+alias repos="cd ~/dev/repos"
+alias devclean="php artisan migrate:fresh; php artisan db:seed"
+alias gitu='git add . && git commit && git push'
+
+
+# COLORLS
+alias ls='lsd -l'
+alias lsa='lsd -a'
+alias lsla='lsd -la'
+alias lst='lsd --tree'
+
+#vscode
+alias vsc=code
+
+
+# Color `grep`
+alias grep='grep --color=always'
+
+function acp() {
+  git add .
+  git commit -m "$1"
+  git push
+}
