@@ -7,7 +7,7 @@ fi
 
 export PATH="/usr/local/bin:usrlocal/sbin:$PATH"
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
-export PATH="$HOME/.dotfiles/bin:$PATH"
+export PATH="$HOME/dotfiles/bin:$PATH"
 
 ## Options section
 setopt correct                                                  # Auto correct mistakes
@@ -182,10 +182,10 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 
 
-[[ -f "${HOME}/.dotfiles/.aliases" ]] && source "${HOME}/.dotfiles/.aliases"
+[[ -f "${HOME}/dotfiles/.aliases" ]] && source "${HOME}/dotfiles/.aliases"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.dotfiles/.p10k.zsh ]] || source ~/.dotfiles/.p10k.zsh
+[[ ! -f ~/dotfiles/.p10k.zsh ]] || source ~/dotfiles/.p10k.zsh
 
 # nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"

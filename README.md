@@ -43,13 +43,13 @@ defaultyes=True
 
 
 ### Dotfile links
-`ln -sv ~/.dotfiles/.bash_profile ~`
+`ln -svf ~/dotfiles/.bash_profile ~`
 
-`ln -sv ~/.dotfiles/.bashrc ~`
+`ln -svf ~/dotfiles/.bashrc ~`
 
-`ln -sv ~/.dotfiles/.zshrc ~`
+`ln -svf ~/dotfiles/.zshrc ~`
 
-`ln -sv ~/.dotfiles/git/.gitconfig ~`
+`ln -svf ~/dotfiles/git/.gitconfig ~`
 
 
 ### Crow Translate
