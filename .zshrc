@@ -7,6 +7,7 @@ fi
 
 export PATH="/usr/local/bin:usrlocal/sbin:$PATH"
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+export PATH="$HOME/.dotfiles/bin:$PATH"
 
 ## Options section
 setopt correct                                                  # Auto correct mistakes
@@ -31,8 +32,6 @@ HISTFILE=~/.zhistory
 HISTSIZE=2000
 SAVEHIST=1000
 HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
-export EDITOR=/usr/bin/nano
-export VISUAL=/usr/bin/code
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 
 
@@ -126,7 +125,7 @@ export LESS=-r
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
     command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
         print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
         print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
@@ -136,15 +135,15 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 
-      
+
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 zinit light-mode for \
-    zinit-zsh/z-a-rust \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node
+    z-shell/z-a-rust \
+    z-shell/z-a-as-monitor \
+    z-shell/z-a-patch-dl \
+    z-shell/z-a-bin-gem-node
 
 ### End of Zinit's installer chunk
 
@@ -166,7 +165,7 @@ PS1="READY >" # provide a simple prompt till the theme loads
 #
 zinit wait lucid for \
   atinit"zicompinit; zicdreplay"  \
-        zdharma/fast-syntax-highlighting \
+        zdharma-continuum/fast-syntax-highlighting \
       OMZP::colored-man-pages \
   as"completion" \
         OMZP::docker/_docker
@@ -177,13 +176,17 @@ zinit wait lucid for \
 #PLUGINS
 zinit light zsh-users/zsh-autosuggestions
 zinit light "MichaelAquilina/zsh-you-should-use"
-zinit load zdharma/history-search-multi-word
+zinit load zdharma-continuum/history-search-multi-word
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 
 
 
-[[ -f "${HOME}/.aliases" ]] && source "${HOME}/.aliases"
+[[ -f "${HOME}/.dotfiles/.aliases" ]] && source "${HOME}/.dotfiles/.aliases"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.dotfiles/.p10k.zsh ]] || source ~/.dotfiles/.p10k.zsh
+
+# nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

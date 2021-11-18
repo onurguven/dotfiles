@@ -1,33 +1,54 @@
 ##############################
 # Aliases
 #############################
+
 alias zshrc="source ~/.zshrc"
-alias zshconfig="code ~/.zshrc"
+alias zshconfig="$EDITOR ~/.zshrc"
 alias myip="curl http://ipecho.net/plain; echo"
+alias hosts="sudo $EDITOR /etc/hosts"
+alias speedtest="wget -O /dev/null http://speed.transip.nl/100mb.bin"
+
+alias resSound="systemctl --user restart pipewire pipewire-pulse"
+
 
 alias cp="cp -i"                                                # Confirm before overwriting something
 alias df='df -h'                                                # Human-readable sizes
 alias free='free -m'                                            # Show sizes in MB
 
-# dev
+alias grep='grep --color=always'
+
+## COLORLS
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+
+
+
+## List declared aliases, functions, paths
+
+alias aliases="alias | sed 's/=.*//'"
+alias functions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'"
+alias paths='echo -e ${PATH//:/\\n}'
+
+## dev
 alias dev="cd ~/dev"
+alias devilbox="cd ~/dev/devilbox"
 alias repos="cd ~/dev/repos"
 alias devclean="php artisan migrate:fresh; php artisan db:seed"
-alias gitu='git add . && git commit && git push'
 
 
-# COLORLS
-alias ls='lsd -l'
-alias lsa='lsd -a'
-alias lsla='lsd -la'
-alias lst='lsd --tree'
+### docker
+alias dup="docker-compose up -d php mysql"
+alias dstop="docker-compose stop"
 
-#vscode
+
+### vscode
 alias vsc=code
 
 
-# Color `grep`
-alias grep='grep --color=always'
+
 
 function acp() {
   git add .
