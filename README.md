@@ -97,23 +97,3 @@ flatpak install flathub com.spotify.Client
 flatpak install flathub com.xnview.XnConvert
 flatpak install flathub com.discordapp.Discord
 ```
-
-
-## Uninstall
-
-To remove the dotfile configs, run the following commands. Be certain to double check the contents of the files before removing so you don't lose custom settings.
-
-```
-unlink ~/.bin
-unlink ~/.gitignore
-unlink ~/.gitconfig
-unlink ~/.gemrc
-unlink ~/.gvimrc
-unlink ~/.irbrc
-unlink ~/.vim
-unlink ~/.vimrc
-rm ~/.zshrc # careful here
-rm -rf ~/.dotfiles
-```
-
-Then open a new terminal window to see the effects.
