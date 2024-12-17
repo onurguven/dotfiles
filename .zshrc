@@ -162,23 +162,10 @@ zinit wait lucid for \
 PS1="READY >" # provide a simple prompt till the theme loads
 
 
-#
-zinit wait lucid for \
-  atinit"zicompinit; zicdreplay"  \
-        zdharma-continuum/fast-syntax-highlighting \
-      OMZP::colored-man-pages \
-  as"completion" \
-        OMZP::docker/_docker
-
-
-
-
 #PLUGINS
 zinit light zsh-users/zsh-autosuggestions
 zinit light "MichaelAquilina/zsh-you-should-use"
-zinit load zdharma-continuum/history-search-multi-word
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-
 
 
 

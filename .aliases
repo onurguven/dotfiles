@@ -8,12 +8,10 @@ alias myip="curl http://ipecho.net/plain; echo"
 alias hosts="sudo $EDITOR /etc/hosts"
 alias speedtest="wget -O /dev/null http://speed.transip.nl/100mb.bin"
 
-alias resSound="systemctl --user restart pipewire pipewire-pulse"
 
-
-alias cp="cp -i"                                                # Confirm before overwriting something
-alias df='df -h'                                                # Human-readable sizes
-alias free='free -m'                                            # Show sizes in MB
+alias cp="cp -i"      # Confirm before overwriting something
+alias df='df -h'      # Human-readable sizes
+alias free='free -m'  # Show sizes in MB
 
 alias grep='grep --color=always'
 
@@ -34,24 +32,12 @@ alias paths='echo -e ${PATH//:/\\n}'
 
 ## dev
 alias dev="cd ~/dev"
-alias devilbox="cd ~/dev/devilbox"
 alias repos="cd ~/dev/repos"
-alias devclean="php artisan migrate:fresh; php artisan db:seed"
-
 
 ### docker
-alias dup="docker-compose up -d php mysql"
+alias dup="docker-compose up -d"
 alias dstop="docker-compose stop"
 
 
 ### vscode
 alias vsc=code
-
-
-
-
-function acp() {
-  git add .
-  git commit -m "$1"
-  git push
-}
