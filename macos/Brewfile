@@ -5,8 +5,6 @@
 # ===================================
 # Taps
 # ===================================
-tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 tap "jandedobbeleer/oh-my-posh"
 
 # ===================================
@@ -70,7 +68,7 @@ cask "raycast"               # Spotlight replacement
 cask "bettertouchtool"       # Trackpad/keyboard customization
 cask "alt-tab"               # Windows-style app switcher
 cask "loop"                  # Window management
-cask "ice"                   # Menu bar management
+cask "jordanbaird-ice"                   # Menu bar management
 
 # ===================================
 # Browsers
