@@ -62,7 +62,6 @@ alias rm='rm -iv'
 alias mkdir='mkdir -pv'
 alias df='df -h'
 alias du='du -h'
-alias free='free -m'
 
 # ===================================
 # Search & Find
@@ -136,15 +135,15 @@ alias h='history'
 alias hclear='echo > ${HISTFILE:-~/.zsh_history} && history -p && echo "History cleared"'
 alias j='jobs -l'
 
-# Show/hide hidden files in Finder (macOS)
-alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
-alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder'
-
-# Flush DNS (macOS)
-alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
-
-# Empty trash (macOS)
-alias emptytrash='rm -rf ~/.Trash/*'
-
-# Lock screen (macOS)
-alias afk='pmset displaysleepnow'
+# ===================================
+# Platform-specific
+# ===================================
+if [[ "$OSTYPE" == darwin* ]]; then
+    alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
+    alias emptytrash='rm -rf ~/.Trash/*'
+    alias afk='pmset displaysleepnow'
+else
+    alias flushdns='sudo systemd-resolve --flush-caches'
+    alias emptytrash='rm -rf ~/.local/share/Trash/files/*'
+    alias afk='dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock'
+fi
