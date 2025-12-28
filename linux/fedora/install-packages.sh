@@ -28,6 +28,12 @@ if ! command -v oh-my-posh &>/dev/null; then
     curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
 fi
 
+# fnm (Fast Node Manager)
+info "Installing fnm..."
+if ! command -v fnm &>/dev/null; then
+    curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+fi
+
 # eza via COPR (not in Fedora 42+ repos)
 info "Installing eza..."
 if ! command -v eza &>/dev/null; then

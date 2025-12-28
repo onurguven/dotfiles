@@ -13,10 +13,10 @@ if [[ -d "/opt/homebrew/bin" ]]; then
     export HOMEBREW_NO_ANALYTICS=1
 fi
 
-# Node.js (NVM)
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# Node.js (fnm)
+if command -v fnm &>/dev/null; then
+    eval "$(fnm env --use-on-cd)"
+fi
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
