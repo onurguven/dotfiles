@@ -1,5 +1,5 @@
 # VS Code Extensions
-# Install with: cat extensions.txt | xargs -L 1 code --install-extension
+# Install with: grep -v '^#' extensions.txt | grep -v '^$' | xargs -L 1 code --install-extension
 
 # Themes & Icons
 chadalen.vscode-jetbrains-icon-theme

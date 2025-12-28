@@ -115,8 +115,7 @@ main() {
     warn "Don't forget to:"
     echo "  1. Create ~/.gitconfig.local with your user info"
     echo "  2. Copy SSH config: cp ~/dotfiles/ssh/config.example ~/.ssh/config"
-    echo "  3. Run 'zimfw install' to install Zsh plugins"
-    echo "  4. Restart your terminal or run: source ~/.zshrc"
+    echo "  3. Restart your terminal or run: source ~/.zshrc"
     echo ""
 }
 
