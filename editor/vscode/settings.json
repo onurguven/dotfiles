@@ -1,11 +1,11 @@
 {
   // Font
-  "editor.fontSize": 16,
+  "editor.fontSize": 14,
   "editor.lineHeight": 1.5,
   "editor.fontFamily": "JetBrainsMono Nerd Font",
   "editor.fontLigatures": true,
-  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
-  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+  "terminal.integrated.fontSize": 13,
 
   // Editor
   "editor.tabSize": 2,
@@ -16,8 +16,15 @@
   "editor.inlineSuggest.enabled": true,
   "editor.rulers": [120],
   "editor.scrollBeyondLastLine": false,
+  "editor.scrollbar.verticalScrollbarSize": 5,
+  "editor.scrollbar.horizontalScrollbarSize": 9,
   "editor.renderWhitespace": "trailing",
   "editor.cursorWidth": 2,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
 
   // Files
   "files.eol": "\n",
@@ -36,6 +43,9 @@
   "workbench.colorTheme": "GitHub Dark Default",
   "workbench.settings.editor": "json",
   "workbench.editor.highlightModifiedTabs": true,
+  "workbench.tips.enabled": false,
+  "workbench.editor.tabActionCloseVisibility": false,
+  "workbench.editor.tabSizing": "shrink",
 
   // Window
   "window.title": "${rootName}${separator}${activeEditorMedium}",
@@ -43,5 +53,14 @@
 
   // Privacy
   "telemetry.telemetryLevel": "off",
-  "update.showReleaseNotes": false
+  "update.showReleaseNotes": false,
+
+  // Explorer
+  "explorer.autoReveal": "focusNoScroll",
+  "explorer.confirmDelete": false,
+  "explorer.fileNesting.enabled": true,
+
+  // Chat
+  "chat.disableAIFeatures": true,
+  "chat.commandCenter.enabled": false
 }
