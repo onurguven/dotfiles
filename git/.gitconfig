@@ -1,0 +1,13 @@
+# Git Configuration
+# ==================
+# Main configuration file that includes modular configs
+
+# Include modular configurations
+[include]
+    path = ~/dotfiles/git/config/core.gitconfig
+    path = ~/dotfiles/git/config/aliases.gitconfig
+    path = ~/dotfiles/git/config/delta.gitconfig
+
+# Include local config (user-specific, not in repo)
+[include]
+    path = ~/.gitconfig.local

@@ -1,0 +1,27 @@
+# Local Git Configuration
+# ========================
+# Copy this to ~/.gitconfig.local and customize
+# This file is NOT committed to the repository
+# Use GitHub's noreply email to keep your real email private:
+# Find yours at: https://github.com/settings/emails
+
+[user]
+    name = Your Name
+    email = id+username@users.noreply.github.com
+    # signingkey = YOUR_GPG_KEY
+
+[github]
+    user = your-github-username
+
+# Optional: GPG signing
+# [commit]
+#     gpgsign = true
+
+# Optional: Different config for work directories
+# [includeIf "gitdir:~/work/"]
+#     path = ~/.gitconfig.work
+
+# Optional: Credential helper
+# [credential]
+#     helper = osxkeychain  # macOS
+#     # helper = store      # Linux (insecure, stores in plaintext)

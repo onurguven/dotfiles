@@ -1,0 +1,32 @@
+# Local Zsh Configuration
+# =======================
+# Machine-specific settings (not committed to git)
+# Copy this to local.zsh and customize
+
+# ===================================
+# Work-specific paths
+# ===================================
+# export PATH="$HOME/work/tools:$PATH"
+
+# ===================================
+# Work-specific aliases
+# ===================================
+# alias vpn="sudo openvpn ~/work/vpn.conf"
+# alias work="cd ~/work"
+
+# ===================================
+# Machine type
+# ===================================
+# export MACHINE_TYPE="work"  # or "personal"
+
+# ===================================
+# API Keys (NEVER commit these!)
+# ===================================
+# export OPENAI_API_KEY="sk-..."
+# export GITHUB_TOKEN="ghp_..."
+# export ANTHROPIC_API_KEY="..."
+
+# ===================================
+# Custom completions
+# ===================================
+# fpath=(~/work/completions $fpath)

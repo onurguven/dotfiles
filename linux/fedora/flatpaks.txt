@@ -1,0 +1,24 @@
+# Fedora Flatpak Applications
+# ============================
+# One app ID per line, no inline comments
+
+# Development
+io.beekeeperstudio.Studio
+com.redis.RedisInsight
+
+# Productivity
+org.onlyoffice.desktopeditors
+
+# Media
+io.github.seadve.Mousai
+com.spotify.Client
+
+# Communication
+com.discordapp.Discord
+
+
+# System
+net.nokyan.Resources
+
+# GNOME
+com.mattjakeman.ExtensionManager

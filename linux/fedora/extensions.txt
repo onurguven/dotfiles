@@ -1,0 +1,16 @@
+# GNOME Extensions
+# =================
+# Install via: make gnome-extensions
+# One extension ID per line, no inline comments
+
+# Window Management
+advanced-alt-tab@G-dH.github.com
+dash-to-panel@jderose9.github.com
+tilingshell@ferrarodomenico.com
+
+# System
+appindicatorsupport@rgcjonas.gmail.com
+display-brightness-ddcutil@themightydeity.github.com
+
+# Smart Home
+smart-home@chlumskyvaclav.gmail.com

@@ -1,0 +1,55 @@
+# Git Core Configuration
+# ======================
+
+[core]
+    editor = code --wait
+    autocrlf = input
+    whitespace = fix
+    pager = delta
+    excludesfile = ~/.gitignore_global
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[push]
+    default = current
+    autoSetupRemote = true
+    followTags = true
+
+[fetch]
+    prune = true
+    pruneTags = true
+
+[rebase]
+    autoStash = true
+    autoSquash = true
+
+[merge]
+    ff = only
+    conflictstyle = zdiff3
+
+[branch]
+    autosetupmerge = always
+    sort = -committerdate
+
+[rerere]
+    enabled = true
+
+[diff]
+    colorMoved = default
+    algorithm = histogram
+
+[status]
+    showUntrackedFiles = all
+
+[log]
+    date = short
+
+[color]
+    ui = auto
+
+[help]
+    autocorrect = prompt

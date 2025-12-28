@@ -1,0 +1,13 @@
+# Zimfw modules
+# https://zimfw.sh/
+
+# Zsh improvements
+zmodule zsh-users/zsh-completions --fpath src
+zmodule zsh-users/zsh-autosuggestions
+zmodule zsh-users/zsh-history-substring-search
+
+# Utilities
+zmodule MichaelAquilina/zsh-you-should-use
+
+# Must be last
+zmodule zsh-users/zsh-syntax-highlighting

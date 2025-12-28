@@ -1,0 +1,17 @@
+# Delta Configuration (Beautiful Diffs)
+# ======================================
+# https://github.com/dandavison/delta
+
+[delta]
+    navigate = true
+    light = false
+    side-by-side = true
+    line-numbers = true
+    syntax-theme = GitHub
+    file-style = bold yellow ul
+    file-decoration-style = none
+    hunk-header-style = file line-number syntax
+    hunk-header-decoration-style = cyan box ul
+
+[interactive]
+    diffFilter = delta --color-only

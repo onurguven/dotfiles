@@ -1,0 +1,34 @@
+# Fedora DNF Packages
+# ===================
+# Install with: sudo dnf install $(grep -v '^#' packages.txt | grep -v '^$' | tr '\n' ' ')
+#
+
+# Shell & Core
+zsh
+git
+gh
+
+# Modern CLI Replacements (available in Fedora repos)
+bat
+fd-find
+zoxide
+git-delta
+
+# Utilities
+jq
+yq
+tree
+wget
+curl
+htop
+tldr
+
+# Terminal
+tilix
+
+# Development
+code
+podman
+
+# System
+gnome-tweaks

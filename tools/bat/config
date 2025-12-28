@@ -1,0 +1,21 @@
+# Bat Configuration
+# =================
+# https://github.com/sharkdp/bat
+
+# Theme
+--theme="GitHub"
+
+# Style
+--style="numbers,changes,header"
+
+# Enable italic text
+--italic-text=always
+
+# Use less as pager
+--pager="less -FR"
+
+# Map extensions to languages
+--map-syntax "*.conf:INI"
+--map-syntax "*.env:Dotenv"
+--map-syntax ".gitignore:Git Ignore"
+--map-syntax "*.zsh:Bash"

@@ -1,0 +1,47 @@
+{
+  // Font
+  "editor.fontSize": 16,
+  "editor.lineHeight": 1.5,
+  "editor.fontFamily": "JetBrainsMono Nerd Font",
+  "editor.fontLigatures": true,
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+  "terminal.integrated.fontSize": 14,
+
+  // Editor
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.inlineSuggest.enabled": true,
+  "editor.rulers": [120],
+  "editor.scrollBeyondLastLine": false,
+  "editor.renderWhitespace": "trailing",
+  "editor.cursorWidth": 2,
+
+  // Files
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+
+  // Terminal
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.inheritEnv": true,
+
+  // Workbench
+  "workbench.startupEditor": "none",
+  "workbench.iconTheme": "symbols",
+  "workbench.colorTheme": "GitHub Dark Default",
+  "workbench.settings.editor": "json",
+  "workbench.editor.highlightModifiedTabs": true,
+
+  // Window
+  "window.title": "${rootName}${separator}${activeEditorMedium}",
+  "window.menuBarVisibility": "toggle",
+
+  // Privacy
+  "telemetry.telemetryLevel": "off",
+  "update.showReleaseNotes": false
+}

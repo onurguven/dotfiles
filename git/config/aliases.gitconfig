@@ -1,0 +1,121 @@
+# Git Aliases
+# ===========
+
+[alias]
+    # ===================================
+    # Status & Info
+    # ===================================
+    s = status -sb
+    st = status
+    info = remote show origin
+
+    # ===================================
+    # Logging
+    # ===================================
+    l = log --oneline -20
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    ll = log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]' --decorate --numstat
+    last = log -1 HEAD --stat
+    today = log --since=midnight --oneline --no-merges
+    week = log --since='1 week ago' --oneline --no-merges
+    contributors = shortlog -sn --no-merges
+
+    # ===================================
+    # Branching
+    # ===================================
+    br = branch
+    bra = branch -a
+    brd = branch -d
+    brD = branch -D
+    co = checkout
+    cob = checkout -b
+    com = checkout main
+    cod = checkout develop
+    sw = switch
+    swc = switch -c
+
+    # ===================================
+    # Committing
+    # ===================================
+    c = commit
+    cm = commit -m
+    ca = commit --amend
+    can = commit --amend --no-edit
+    wip = commit -m "WIP"
+    save = !git add -A && git commit -m 'SAVEPOINT'
+
+    # ===================================
+    # Staging
+    # ===================================
+    a = add
+    aa = add -A
+    ap = add -p
+    unstage = reset HEAD --
+    discard = checkout --
+
+    # ===================================
+    # Diffing
+    # ===================================
+    d = diff
+    dc = diff --cached
+    ds = diff --staged
+    dw = diff --word-diff
+    stat = diff --stat
+
+    # ===================================
+    # Stashing
+    # ===================================
+    stash-all = stash save --include-untracked
+    pop = stash pop
+    drop = stash drop
+
+    # ===================================
+    # Working with remotes
+    # ===================================
+    p = push
+    pf = push --force-with-lease
+    pl = pull
+    f = fetch
+    fa = fetch --all
+
+    # ===================================
+    # Undo
+    # ===================================
+    undo = reset HEAD~1 --mixed
+    uncommit = reset --soft HEAD~1
+    nuke = !git reset --hard HEAD && git clean -fd
+
+    # ===================================
+    # Cleanup
+    # ===================================
+    cleanup = "!git branch --merged | grep -v '\\*\\|main\\|master\\|develop' | xargs -n 1 git branch -d"
+    prune-local = "!git fetch -p && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -d"
+
+    # ===================================
+    # Find
+    # ===================================
+    find = "!git ls-files | grep -i"
+    grep = grep -Ii
+    aliases = config --get-regexp alias
+
+    # ===================================
+    # Utilities
+    # ===================================
+    root = rev-parse --show-toplevel
+    whoami = config user.email
+    ignore = "!gi() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;}; gi"
+
+    # List files
+    ls = ls-files
+
+    # Show current branch name
+    current = rev-parse --abbrev-ref HEAD
+
+    # Open repo in browser (cross-platform)
+    open = "!f() { \
+        url=$(git remote get-url origin | sed 's/git@/https:\\/\\//' | sed 's/.git$//' | sed 's/:/\\//'); \
+        case \"$(uname)\" in \
+            Darwin) open \"$url\" ;; \
+            *) xdg-open \"$url\" 2>/dev/null || echo \"$url\" ;; \
+        esac; \
+    }; f"

@@ -1,0 +1,98 @@
+# Homebrew Bundle
+# ===============
+# Install with: brew bundle --file=~/dotfiles/macos/Brewfile
+
+# ===================================
+# Taps
+# ===================================
+tap "homebrew/bundle"
+tap "homebrew/cask-fonts"
+tap "jandedobbeleer/oh-my-posh"
+
+# ===================================
+# Fonts (Nerdfonts)
+# ===================================
+cask "font-jetbrains-mono-nerd-font"
+cask "font-fira-code-nerd-font"
+cask "font-meslo-lg-nerd-font"
+
+# ===================================
+# Shell & Core
+# ===================================
+brew "zsh"
+brew "git"
+brew "gh"                    # GitHub CLI
+
+# ===================================
+# Modern CLI Replacements
+# ===================================
+brew "eza"                   # ls replacement
+brew "bat"                   # cat replacement
+brew "fd"                    # find replacement
+brew "zoxide"                # cd replacement
+brew "git-delta"             # diff replacement
+brew "oh-my-posh"             # Cross-shell prompt
+
+# ===================================
+# Node.js
+# ===================================
+brew "nvm"
+brew "pnpm"
+
+# ===================================
+# Utilities
+# ===================================
+brew "jq"                    # JSON processor
+brew "yq"                    # YAML processor
+brew "tree"                  # Directory tree
+brew "wget"
+brew "curl"
+brew "htop"
+brew "tldr"                  # Simplified man pages
+
+# ===================================
+# Terminal
+# ===================================
+cask "iterm2"
+
+# ===================================
+# Development
+# ===================================
+cask "visual-studio-code"
+cask "orbstack"              # Docker alternative (lightweight)
+cask "tableplus"             # Database client
+cask "figma"
+
+# ===================================
+# Productivity
+# ===================================
+cask "raycast"               # Spotlight replacement
+cask "bettertouchtool"       # Trackpad/keyboard customization
+cask "alt-tab"               # Windows-style app switcher
+cask "loop"                  # Window management
+cask "ice"                   # Menu bar management
+
+# ===================================
+# Browsers
+# ===================================
+cask "waterfox"
+
+# ===================================
+# Communication
+# ===================================
+cask "discord"
+cask "notion"
+
+# ===================================
+# Media & Utils
+# ===================================
+cask "spotify"
+cask "keka"                  # Archive utility
+cask "stats"                 # System monitor
+cask "localsend"             # Local file sharing
+cask "onlyoffice"            # Office suite
+
+# ===================================
+# VPN
+# ===================================
+cask "mullvad-vpn"
