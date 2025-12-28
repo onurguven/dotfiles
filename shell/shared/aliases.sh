@@ -134,6 +134,7 @@ alias week='date +%V'
 alias timestamp='date +%s'
 alias cls='clear'
 alias h='history'
+alias hclear='echo > ${HISTFILE:-~/.zsh_history} && history -p && echo "History cleared"'
 alias j='jobs -l'
 
 # Show/hide hidden files in Finder (macOS)
