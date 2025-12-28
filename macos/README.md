@@ -138,13 +138,6 @@ chmod 600 ~/.ssh/config
 sudo chown -R $(whoami) /usr/local/bin /usr/local/lib
 ```
 
-### Zsh plugins not loading
-
-```bash
-cd ~/dotfiles
-git submodule update --init --recursive
-```
-
 ### Reset to defaults
 
 ```bash
