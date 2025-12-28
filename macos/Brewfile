@@ -27,9 +27,10 @@ brew "gh"                    # GitHub CLI
 brew "eza"                   # ls replacement
 brew "bat"                   # cat replacement
 brew "fd"                    # find replacement
+brew "fzf"                   # Fuzzy finder
 brew "zoxide"                # cd replacement
 brew "git-delta"             # diff replacement
-brew "oh-my-posh"             # Cross-shell prompt
+brew "oh-my-posh"            # Cross-shell prompt
 
 # ===================================
 # Node.js

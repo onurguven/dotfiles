@@ -18,7 +18,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 info "Installing DNF packages..."
 sudo dnf install -y --skip-unavailable \
     zsh git gh \
-    bat fd-find zoxide git-delta \
+    bat fd-find fzf zoxide git-delta \
     jq yq tree wget curl htop tldr \
     tilix podman gnome-tweaks
 

@@ -1,0 +1,231 @@
+#!/usr/bin/env bash
+# ports - Port Management Tool
+# ============================
+
+set -euo pipefail
+
+# Colors & Styles
+readonly RED='\033[0;31m'
+readonly GREEN='\033[0;32m'
+readonly YELLOW='\033[1;33m'
+readonly CYAN='\033[0;36m'
+readonly DIM='\033[2m'
+readonly BOLD='\033[1m'
+readonly NC='\033[0m'
+
+# Get process name from PID
+get_proc_name() {
+    ps -p "$1" -o comm= 2>/dev/null | sed 's|.*/||' || echo "?"
+}
+
+# Format port data for fzf display
+format_fzf_list() {
+    awk -F'\t' '{
+        port = $1; proc = $2
+        addr = ($4 == "127.0.0.1") ? "local" : "public"
+        printf "%s\t:%s  %s  %s\n", port, port, proc, addr
+    }'
+}
+
+show_help() {
+    echo -e "${BOLD}ports${NC} - Port Management Tool"
+    echo
+    echo -e "${BOLD}Usage:${NC}"
+    echo "  ports              Interactive mode (fzf)"
+    echo "  ports ls           List all listening ports"
+    echo "  ports ls <port>    Check specific port"
+    echo "  ports ls -w        Live monitoring mode"
+    echo "  ports kill <port>  Kill process on port"
+    echo
+    echo -e "${BOLD}Examples:${NC}"
+    echo "  ports              # Interactive port selection"
+    echo "  ports ls           # Show all listening ports"
+    echo "  ports ls 3000      # Check if port 3000 is in use"
+    echo "  ports ls -w        # Live monitoring (2s refresh)"
+    echo "  ports kill 3000    # Kill process on port 3000"
+}
+
+get_port_data() {
+    lsof -iTCP -sTCP:LISTEN -P -n 2>/dev/null | awk '
+    NR > 1 {
+        pid = $2; user = $3; name = $9
+        n = split(name, a, ":"); port = a[n]
+
+        if (name ~ /^\*:/ || name ~ /\[::\]:/)
+            addr = "0.0.0.0"
+        else if (name ~ /127\.0\.0\.1:/ || name ~ /\[::1\]:/)
+            addr = "127.0.0.1"
+        else {
+            split(name, b, ":"); addr = b[1]
+        }
+
+        if (!(port in seen)) {
+            seen[port] = 1
+            print port "\t" pid "\t" addr "\t" user
+        }
+    }' | while IFS=$'\t' read -r port pid addr user; do
+        printf '%s\t%s\t%s\t%s\t%s\n' "$port" "$(get_proc_name "$pid")" "$pid" "$addr" "$user"
+    done | sort -t$'\t' -k1 -n
+}
+
+list_ports() {
+    local filter="${1:-}"
+
+    if [[ "$filter" == "-w" || "$filter" == "--watch" ]]; then
+        if command -v watch &>/dev/null; then
+            watch -n 2 -c "$0 ls"
+        else
+            while true; do
+                clear
+                echo -e "${DIM}Press Ctrl+C to exit${NC}"
+                echo
+                list_ports_internal ""
+                sleep 2
+            done
+        fi
+        return 0
+    fi
+
+    list_ports_internal "$filter"
+}
+
+list_ports_internal() {
+    local filter="${1:-}"
+
+    if [[ -n "$filter" ]]; then
+        local data=$(get_port_data | awk -F'\t' -v p="$filter" '$1 == p')
+
+        if [[ -z "$data" ]]; then
+            echo -e "${GREEN}✓${NC} Port ${BOLD}$filter${NC} is available"
+            return 0
+        fi
+
+        echo -e "${RED}✗${NC} Port ${BOLD}$filter${NC} is in use"
+        echo
+        echo "$data" | while IFS=$'\t' read -r port proc pid addr user; do
+            echo -e "  ${DIM}Process${NC}  $proc"
+            echo -e "  ${DIM}PID${NC}      $pid"
+            echo -e "  ${DIM}Address${NC}  $addr"
+            echo -e "  ${DIM}User${NC}     $user"
+        done
+        return 0
+    fi
+
+    local data=$(get_port_data)
+
+    if [[ -z "$data" ]]; then
+        echo -e "${GREEN}✓${NC} No listening ports"
+        return 0
+    fi
+
+    local count=$(echo "$data" | wc -l | tr -d ' ')
+    echo
+    echo -e " ${BOLD}LISTENING PORTS${NC} ${DIM}($count)${NC}"
+    echo -e " ${DIM}─────────────────${NC}"
+    echo
+
+    echo "$data" | while IFS=$'\t' read -r port proc pid addr user; do
+        local indicator=$([[ "$addr" == "127.0.0.1" ]] && echo "${DIM}local${NC}" || echo "${CYAN}public${NC}")
+        echo -e " ${BOLD}:$port${NC}  $proc"
+        echo -e "       ${DIM}PID $pid · $user · $indicator${NC}"
+        echo
+    done
+}
+
+kill_port() {
+    local port=$1
+    local pids=$(lsof -ti :"$port" 2>/dev/null)
+
+    if [[ -z "$pids" ]]; then
+        echo -e "${YELLOW}!${NC} No process on port $port"
+        return 1
+    fi
+
+    local pid=$(echo "$pids" | head -1)
+    local proc=$(get_proc_name "$pid")
+
+    echo -e "${RED}✗${NC} Killing ${BOLD}$proc${NC} on :$port"
+
+    if kill -9 "$pid" 2>/dev/null; then
+        echo -e "${GREEN}✓${NC} Done"
+    else
+        echo -e "${RED}✗${NC} Failed"
+        return 1
+    fi
+}
+
+interactive_mode() {
+    if ! command -v fzf &>/dev/null; then
+        echo -e "${RED}✗${NC} fzf required for interactive mode"
+        echo -e "  ${DIM}brew install fzf${NC}"
+        return 1
+    fi
+
+    local data=$(get_port_data)
+
+    if [[ -z "$data" ]]; then
+        echo -e "${GREEN}✓${NC} No listening ports"
+        return 0
+    fi
+
+    local fzf_list=$(echo "$data" | format_fzf_list)
+
+    local preview_cmd='
+        port={1}
+        echo ""
+        echo "  PORT :$port"
+        echo "  ─────────────────────"
+        echo ""
+        lsof -i :$port -P -n 2>/dev/null | awk "NR>1 {print \$2, \$3, \$9}" | while read -r pid user addr; do
+            proc=$(ps -p "$pid" -o comm= 2>/dev/null | sed "s|.*/||" || echo "?")
+            echo "  $proc"
+            echo "  PID $pid · $user"
+            echo "  $addr"
+            echo ""
+        done
+    '
+
+    local selected=$(echo "$fzf_list" | \
+        fzf --ansi \
+            --reverse \
+            --header="ENTER: kill  ctrl-r: refresh  ESC: cancel" \
+            --prompt="› " \
+            --pointer="▶" \
+            --with-nth=2.. \
+            --delimiter=$'\t' \
+            --preview="$preview_cmd" \
+            --preview-window=right:35%:wrap \
+            --color='prompt:red,pointer:red,header:dim,hl:red,hl+:red' \
+            --bind="ctrl-r:reload($0 --fzf-list)" \
+        || true)
+
+    [[ -z "$selected" ]] && return 0
+
+    local port=$(echo "$selected" | cut -f1)
+    local proc=$(get_proc_name "$(lsof -ti :"$port" 2>/dev/null | head -1)")
+
+    echo
+    echo -e "Kill ${BOLD}$proc${NC} on port ${BOLD}:$port${NC}?"
+    read -p "Confirm (y/N): " -n 1 -r
+    echo
+
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        kill_port "$port"
+    else
+        echo -e "${DIM}Cancelled${NC}"
+    fi
+}
+
+# Main
+case "${1:-}" in
+    "")              interactive_mode ;;
+    ls|list|l)       list_ports "${2:-}" ;;
+    kill|k)
+        shift
+        [[ $# -eq 0 ]] && { echo -e "${RED}✗${NC} Specify port(s)"; exit 1; }
+        for p in "$@"; do kill_port "$p"; done
+        ;;
+    --fzf-list)      get_port_data | format_fzf_list ;;
+    -h|--help|help)  show_help ;;
+    *)               echo -e "${RED}✗${NC} Unknown: $1"; exit 1 ;;
+esac

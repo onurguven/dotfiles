@@ -41,8 +41,16 @@ cd ~/dotfiles
 | [eza](https://github.com/eza-community/eza) | ls | Modern ls with icons |
 | [bat](https://github.com/sharkdp/bat) | cat | Syntax highlighting |
 | [fd](https://github.com/sharkdp/fd) | find | Fast file finder |
+| [fzf](https://github.com/junegunn/fzf) | - | Fuzzy finder |
 | [zoxide](https://github.com/ajeetdsouza/zoxide) | cd | Smart directory jumping |
 | [delta](https://github.com/dandavison/delta) | diff | Beautiful diffs |
+
+### Custom Scripts
+
+| Script | Description |
+|--------|-------------|
+| `ports` | Port management tool (list, kill, interactive fzf mode) |
+| `dotfiles` | Dotfiles management (update, edit, backup) |
 
 ### macOS Specific
 

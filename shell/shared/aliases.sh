@@ -77,7 +77,6 @@ alias egrep='egrep --color=auto'
 alias hosts="sudo ${EDITOR:-code} /etc/hosts"
 alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -"
 alias ping='ping -c 5'
-alias ports='netstat -tulanp'
 
 # ===================================
 # Git
