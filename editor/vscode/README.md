@@ -17,25 +17,19 @@ VS Code's built-in Settings Sync handles:
 3. Search "Settings Sync: Turn On"
 4. Sign in with GitHub
 
-### Secondary: Dotfiles Backup
+### Secondary: Dotfiles Reference
 
-This repo contains backup/reference files:
+This repo contains reference files:
 
-- `extensions.txt` - List of installed extensions
+- `extensions.txt` - Curated list of recommended extensions
 - `settings.json` - Base settings (minimal)
 
 ## Extension Management
 
-### Export current extensions
+### Install extensions from list
 
 ```bash
-code --list-extensions > ~/dotfiles/editor/vscode/extensions.txt
-```
-
-### Install from list
-
-```bash
-cat ~/dotfiles/editor/vscode/extensions.txt | xargs -L 1 code --install-extension
+grep -v '^#' ~/dotfiles/editor/vscode/extensions.txt | grep -v '^$' | xargs -L 1 code --install-extension
 ```
 
 ## Installed Extensions

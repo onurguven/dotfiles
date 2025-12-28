@@ -32,22 +32,8 @@ ms-python.python
 ms-python.vscode-pylance
 ms-python.vscode-python-envs
 
-# Elixir/Phoenix
-jakebecker.elixir-ls
-phoenixframework.phoenix
-
-# PHP/Laravel
-biati.ddev-manager
-laravel.vscode-laravel
-
-# Database
-prisma.prisma
-
 # Docker & Remote
 docker.docker
-ms-azuretools.vscode-containers
-ms-azuretools.vscode-docker
-ms-vscode-remote.remote-containers
 
 # Testing
 vitest.explorer
@@ -57,7 +43,6 @@ aaron-bond.better-comments
 editorconfig.editorconfig
 firefox-devtools.vscode-firefox-debug
 mikestead.dotenv
-ms-vscode.makefile-tools
 yzhang.markdown-all-in-one
 
 # AI
