@@ -4,6 +4,11 @@
 # Make sure permissions are correct: chmod 600 ~/.ssh/config
 
 # ===================================
+# Includes
+# ===================================
+Include ~/.orbstack/ssh/config
+
+# ===================================
 # Global defaults
 # ===================================
 Host *
