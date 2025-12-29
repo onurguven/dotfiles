@@ -46,26 +46,83 @@ show_help() {
 }
 
 get_port_data() {
-    lsof -iTCP -sTCP:LISTEN -P -n 2>/dev/null | awk '
-    NR > 1 {
-        pid = $2; user = $3; name = $9
-        n = split(name, a, ":"); port = a[n]
+    if [[ "$(uname)" == "Darwin" ]]; then
+        # macOS: use lsof
+        lsof -iTCP -sTCP:LISTEN -P -n 2>/dev/null | awk '
+        NR > 1 {
+            pid = $2; user = $3; name = $9
+            n = split(name, a, ":"); port = a[n]
 
-        if (name ~ /^\*:/ || name ~ /\[::\]:/)
-            addr = "0.0.0.0"
-        else if (name ~ /127\.0\.0\.1:/ || name ~ /\[::1\]:/)
-            addr = "127.0.0.1"
-        else {
-            split(name, b, ":"); addr = b[1]
-        }
+            if (name ~ /^\*:/ || name ~ /\[::\]:/)
+                addr = "0.0.0.0"
+            else if (name ~ /127\.0\.0\.1:/ || name ~ /\[::1\]:/)
+                addr = "127.0.0.1"
+            else {
+                split(name, b, ":"); addr = b[1]
+            }
 
-        if (!(port in seen)) {
-            seen[port] = 1
-            print port "\t" pid "\t" addr "\t" user
-        }
-    }' | while IFS=$'\t' read -r port pid addr user; do
-        printf '%s\t%s\t%s\t%s\t%s\n' "$port" "$(get_proc_name "$pid")" "$pid" "$addr" "$user"
-    done | sort -t$'\t' -k1 -n
+            if (!(port in seen)) {
+                seen[port] = 1
+                print port "\t" pid "\t" addr "\t" user
+            }
+        }' | while IFS=$'\t' read -r port pid addr user; do
+            printf '%s\t%s\t%s\t%s\t%s\n' "$port" "$(get_proc_name "$pid")" "$pid" "$addr" "$user"
+        done | sort -t$'\t' -k1 -n
+    else
+        # Linux: combine ss (user processes) + docker containers
+        {
+            # 1. User processes from ss (only those with process info)
+            ss -tlnp 2>/dev/null | grep -E 'users:\(\(' | awk '
+            {
+                addr_port = $4
+                n = split(addr_port, a, ":")
+                port = a[n]
+                addr = (n > 2) ? "0.0.0.0" : a[1]
+
+                if (addr == "0.0.0.0" || addr == "*" || addr == "[::]")
+                    addr = "0.0.0.0"
+                else if (addr ~ /^127\./)
+                    addr = "127.0.0.1"
+
+                proc_info = $6
+                pid = "-"; proc = "-"
+
+                if (proc_info ~ /pid=/) {
+                    tmp = proc_info
+                    gsub(/.*pid=/, "", tmp)
+                    gsub(/,.*/, "", tmp)
+                    pid = tmp
+                }
+
+                if (proc_info ~ /\(\("/) {
+                    tmp = proc_info
+                    gsub(/.*\(\("/, "", tmp)
+                    gsub(/".*/, "", tmp)
+                    proc = tmp
+                }
+
+                if (port ~ /^[0-9]+$/) {
+                    user = ENVIRON["USER"]
+                    if (user == "") user = "-"
+                    print port "\t" proc "\t" pid "\t" addr "\t" user
+                }
+            }'
+
+            # 2. Docker containers (if docker is available)
+            if command -v docker &>/dev/null; then
+                docker ps --format "{{.Names}}|{{.Ports}}" 2>/dev/null | while IFS='|' read -r name ports; do
+                    echo "$ports" | tr ',' '\n' | while read -r mapping; do
+                        if [[ "$mapping" =~ ([0-9.]+):([0-9]+)-\>([0-9]+) ]]; then
+                            addr="${BASH_REMATCH[1]}"
+                            port="${BASH_REMATCH[2]}"
+                            [[ "$addr" == "0.0.0.0" ]] && addr="0.0.0.0" || addr="127.0.0.1"
+                            echo -e "${port}\t${name}\t-\t${addr}\t${USER}"
+                        fi
+                    done
+                done
+            fi
+        } | sort -t$'\t' -k1 -n | awk -F'\t' '!seen[$1]++'
+    fi
 }
 
 list_ports() {

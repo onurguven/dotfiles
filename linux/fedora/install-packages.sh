@@ -31,7 +31,13 @@ fi
 # fnm (Fast Node Manager)
 info "Installing fnm..."
 if ! command -v fnm &>/dev/null; then
-    curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+    curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "$HOME/.local/bin" --skip-shell
+fi
+
+# pnpm
+info "Installing pnpm..."
+if ! command -v pnpm &>/dev/null; then
+    PNPM_HOME="$HOME/.local/share/pnpm" SHELL=/dev/null curl -fsSL https://get.pnpm.io/install.sh | sh -
 fi
 
 # eza via COPR (not in Fedora 42+ repos)
