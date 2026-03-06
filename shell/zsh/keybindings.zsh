@@ -27,13 +27,14 @@ bindkey '^Y' autosuggest-accept # Ctrl+Y
 # =============================================================================
 # PLATFORM NOTES
 # =============================================================================
-# macOS (iTerm2):
+# macOS (iTerm2 / Ghostty):
 #   - Option+Arrow: Word navigation (sends Esc+b/f, works with emacs mode)
 #   - Cmd+Left/Right: Line start/end (sends Ctrl+A/E)
 #   - Option+Backspace: Delete word (sends Esc+Backspace)
 #   - Cmd+Backspace: Delete line (sends Ctrl+U)
+#   - Ghostty: macos-option-as-alt = true (in ghostty config)
 #
-# Linux (GNOME Terminal/Tilix/VSCode):
+# Linux (GNOME Terminal/Ghostty/VSCode):
 #   - Ctrl+Arrow: Word navigation (bound above)
 #   - Ctrl+A/E: Line start/end
 #   - Home/End: Line start/end

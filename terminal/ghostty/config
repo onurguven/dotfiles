@@ -1,0 +1,86 @@
+# Ghostty Configuration
+# ====================
+# https://ghostty.org/docs/config
+
+# ===================================
+# Font
+# ===================================
+font-family = JetBrains Mono Nerd Font
+font-size = 14
+font-style = Medium
+font-style-bold = Bold
+font-style-italic = Medium Italic
+font-style-bold-italic = Bold Italic
+font-feature = -liga
+adjust-cell-height = 4
+adjust-underline-position = 2
+adjust-underline-thickness = 1
+adjust-cursor-thickness = 2
+
+# ===================================
+# Theme
+# ===================================
+theme = GitHub Dark
+minimum-contrast = 1.1
+
+# ===================================
+# Window
+# ===================================
+window-padding-x = 0
+window-padding-y = 0
+window-padding-balance = true
+window-save-state = always
+
+# ===================================
+# Background
+# ===================================
+background = 050505
+background-opacity = 0.92
+background-blur-radius = 25
+
+# ===================================
+# Cursor
+# ===================================
+cursor-style = block
+cursor-style-blink = false
+
+# ===================================
+# Scrollback
+# ===================================
+scrollback-limit = 10000
+
+# ===================================
+# Clipboard
+# ===================================
+clipboard-trim-trailing-spaces = true
+clipboard-paste-protection = true
+
+# ===================================
+# Shell Integration
+# ===================================
+shell-integration-features = cursor,sudo,title
+
+# ===================================
+# Mouse
+# ===================================
+focus-follows-mouse = true
+
+# ===================================
+# Keybindings
+# ===================================
+# Quick terminal (Hyperkey+backtick)
+keybind = global:super+shift+alt+ctrl+`=toggle_quick_terminal
+
+# ===================================
+# Quick Terminal
+# ===================================
+quick-terminal-position = bottom
+quick-terminal-animation-duration = 0.15
+
+# ===================================
+# macOS (ignored on Linux)
+# ===================================
+macos-option-as-alt = true
+macos-titlebar-style = tabs
+macos-window-buttons = hidden
+macos-icon = xray

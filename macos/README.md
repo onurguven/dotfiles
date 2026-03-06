@@ -50,6 +50,8 @@ make defaults    # macOS preferences
 | fd | Modern find |
 | zoxide | Smart cd |
 | git-delta | Better diffs |
+| fzf | Fuzzy finder |
+| lazygit | Git TUI |
 | oh-my-posh | Cross-shell prompt |
 | jq | JSON processor |
 | tldr | Simplified man |
@@ -58,7 +60,8 @@ make defaults    # macOS preferences
 
 | App | Description |
 |-----|-------------|
-| iTerm2 | Terminal |
+| Ghostty | Terminal (primary) |
+| iTerm2 | Terminal (alternative) |
 | Visual Studio Code | Editor |
 | Raycast | Spotlight replacement |
 | BetterTouchTool | Trackpad customization |
@@ -117,12 +120,11 @@ cp ~/dotfiles/ssh/config.example ~/.ssh/config
 chmod 600 ~/.ssh/config
 ```
 
-### 3. Configure iTerm2
+### 3. Configure Terminal
 
-1. Open iTerm2 Preferences
-2. Go to Profiles > Colors
-3. Import a color scheme (GitHub Dark recommended)
-4. Set font to JetBrains Mono Nerd Font
+**Ghostty** (primary): Run `make terminal` to symlink config. Ready to use.
+
+**iTerm2** (alternative): Import profile from `~/dotfiles/terminal/iterm2/`.
 
 ### 4. Configure Raycast
 

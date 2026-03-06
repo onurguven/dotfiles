@@ -77,7 +77,7 @@ dotfiles/
 ├── git/                # Git configuration
 │   └── config/         # Modular git configs
 ├── tools/              # CLI tool configs
-├── terminal/           # Terminal emulator configs
+├── terminal/           # Terminal configs (Ghostty, iTerm2)
 ├── editor/             # Editor settings
 ├── macos/              # macOS specific (Brewfile, defaults, README)
 ├── linux/              # Linux specific (Fedora README, packages)
@@ -95,6 +95,7 @@ make core           # Install shell + git only
 make shell          # Shell configuration only
 make git            # Git configuration only
 make tools          # CLI tools configuration
+make terminal       # Terminal configuration (Ghostty)
 make macos          # Full macOS installation
 make fedora         # Full Fedora installation
 make defaults       # Apply macOS system preferences

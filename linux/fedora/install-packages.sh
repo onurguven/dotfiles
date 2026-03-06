@@ -20,7 +20,7 @@ sudo dnf install -y --skip-unavailable \
     zsh git gh \
     bat fd-find fzf zoxide git-delta lazygit lsof \
     jq yq tree wget curl htop tldr \
-    tilix podman gnome-tweaks
+    podman gnome-tweaks
 
 # Oh-My-Posh (official install script)
 info "Installing Oh-My-Posh..."
@@ -45,6 +45,13 @@ info "Installing eza..."
 if ! command -v eza &>/dev/null; then
     sudo dnf copr enable -y alternateved/eza
     sudo dnf install -y eza
+fi
+
+# Ghostty via COPR
+info "Installing Ghostty..."
+if ! command -v ghostty &>/dev/null; then
+    sudo dnf copr enable -y pgdev/ghostty
+    sudo dnf install -y ghostty
 fi
 
 # Mullvad VPN via official repo

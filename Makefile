@@ -59,7 +59,7 @@ help:
 macos: backup zimfw homebrew shell git tools terminal editor defaults
 	@printf "$(GREEN)macOS installation complete!$(NC)\n"
 
-fedora: backup zimfw dnf flatpaks shell git tools gnome gnome-extensions
+fedora: backup zimfw dnf flatpaks shell git tools terminal gnome gnome-extensions
 	@printf "$(GREEN)Fedora installation complete!$(NC)\n"
 
 core: backup zimfw shell git
@@ -129,8 +129,11 @@ tools:
 # ===================================
 
 terminal:
-	@printf "$(YELLOW)Terminal configuration ready.$(NC)\n"
+	@printf "$(YELLOW)Installing terminal configuration...$(NC)\n"
+	@mkdir -p $(XDG_CONFIG_HOME)/ghostty
+	@ln -sfn $(DOTFILES_DIR)/terminal/ghostty/config $(XDG_CONFIG_HOME)/ghostty/config
 	@printf "$(YELLOW)For iTerm2: Import profile from $(DOTFILES_DIR)/terminal/iterm2/$(NC)\n"
+	@printf "$(GREEN)Terminal configuration installed!$(NC)\n"
 
 # ===================================
 # Editor Configuration
@@ -201,4 +204,5 @@ clean:
 	@rm -f $(HOME_DIR)/.gitconfig
 	@rm -f $(HOME_DIR)/.gitignore_global
 	@rm -f $(XDG_CONFIG_HOME)/bat/config
+	@rm -f $(XDG_CONFIG_HOME)/ghostty/config
 	@printf "$(GREEN)Symlinks removed!$(NC)\n"

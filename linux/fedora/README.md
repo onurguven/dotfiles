@@ -32,7 +32,7 @@ Or install manually:
 
 ```bash
 # Modern CLI tools
-sudo dnf install -y eza bat fd-find zoxide git-delta tilix
+sudo dnf install -y eza bat fd-find zoxide git-delta lazygit
 
 # Oh-My-Posh (shell prompt)
 curl -s https://ohmyposh.dev/install.sh | bash -s -- -d ~/.local/bin
