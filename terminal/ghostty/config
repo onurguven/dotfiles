@@ -81,7 +81,7 @@ quick-terminal-animation-duration = 0.15
 # ===================================
 # macOS (ignored on Linux)
 # ===================================
-macos-option-as-alt = true
+macos-option-as-alt = left
 macos-titlebar-style = tabs
 macos-window-buttons = hidden
 macos-icon = xray
