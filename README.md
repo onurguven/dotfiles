@@ -44,6 +44,7 @@ cd ~/dotfiles
 | [fzf](https://github.com/junegunn/fzf) | - | Fuzzy finder |
 | [zoxide](https://github.com/ajeetdsouza/zoxide) | cd | Smart directory jumping |
 | [delta](https://github.com/dandavison/delta) | diff | Beautiful diffs |
+| [lazygit](https://github.com/jesseduffield/lazygit) | - | Git TUI |
 
 ### Custom Scripts
 
