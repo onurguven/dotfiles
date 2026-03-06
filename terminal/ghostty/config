@@ -21,7 +21,8 @@ adjust-cursor-thickness = 2
 # Theme
 # ===================================
 theme = GitHub Dark
-minimum-contrast = 1.1
+minimum-contrast = 1.2
+foreground = c9d1d9
 
 # ===================================
 # Window
