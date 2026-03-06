@@ -35,7 +35,10 @@ if command -v bat &>/dev/null; then
     alias catp='bat'  # with paging
 fi
 
-# zoxide (cd replacement) - configured in exports
+# zoxide (cd replacement)
+if command -v zoxide &>/dev/null; then
+    alias cd='z'
+fi
 
 # ===================================
 # Navigation
@@ -97,6 +100,7 @@ alias gl='git log --oneline -20'
 alias glog='git log --graph --oneline --decorate'
 alias gst='git stash'
 alias gstp='git stash pop'
+alias lg='lazygit'
 
 # ===================================
 # Docker

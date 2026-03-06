@@ -48,6 +48,7 @@ brew "wget"
 brew "curl"
 brew "htop"
 brew "tldr"                  # Simplified man pages
+brew "lazygit"               # Git TUI
 
 # ===================================
 # Terminal
