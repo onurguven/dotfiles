@@ -39,17 +39,17 @@ source "${DOTFILES}/shell/shared/aliases.sh"
 source "${DOTFILES}/shell/shared/functions.sh"
 
 # ===================================
-# Zoxide (smart cd)
-# ===================================
-if command -v zoxide &>/dev/null; then
-    eval "$(zoxide init bash)"
-fi
-
-# ===================================
 # Oh-My-Posh Prompt
 # ===================================
 if command -v oh-my-posh &>/dev/null; then
     eval "$(oh-my-posh init bash --config ${DOTFILES}/shell/zsh/ohmyposh.json)"
+fi
+
+# ===================================
+# Zoxide (must be last)
+# ===================================
+if command -v zoxide &>/dev/null; then
+    eval "$(zoxide init bash --cmd cd)"
 fi
 
 # ===================================

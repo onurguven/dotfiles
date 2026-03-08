@@ -35,11 +35,6 @@ if command -v bat &>/dev/null; then
     alias catp='bat'  # with paging
 fi
 
-# zoxide (cd replacement)
-if command -v zoxide &>/dev/null; then
-    alias cd='z'
-fi
-
 # ===================================
 # Navigation
 # ===================================
