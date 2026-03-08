@@ -33,6 +33,12 @@ window-padding-balance = true
 window-save-state = always
 
 # ===================================
+# Split
+# ===================================
+split-divider-color = 151515
+unfocused-split-opacity = 0.85
+
+# ===================================
 # Background
 # ===================================
 background = 050505
@@ -48,7 +54,7 @@ cursor-style-blink = false
 # ===================================
 # Scrollback
 # ===================================
-scrollback-limit = 10000
+scrollback-limit = 100000
 
 # ===================================
 # Clipboard
